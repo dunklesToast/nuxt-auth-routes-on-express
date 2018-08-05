@@ -27,7 +27,7 @@ export const actions = {
       //const { data } = await this.$axios.$post(process.env.API_HOST + '/api/login', { username, password })
 
       // non-destructuring code works!
-      const data = await this.$axios.$post(process.env.API_HOST + '/api/login', { username, password })
+      const data = await this.$axios.$post((process.env.API_HOST || '') + '/api/login', { username, password })
       console.log('data', data)
       commit('SET_USER', data)
     } catch (error) {
@@ -40,7 +40,7 @@ export const actions = {
 
   async logout({ commit }) {
     console.log('var', process.env.API_HOST)
-    await this.$axios.$post(process.env.API_HOST + '/api/logout')
+    await this.$axios.$post((process.env.API_HOST || '') + '/api/logout')
     commit('SET_USER', null)
   }
 
